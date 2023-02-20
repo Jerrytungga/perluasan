@@ -1,6 +1,25 @@
 <?php
 include '../koneksi.php';
 include 'session.php';
+if (isset($_POST['submit'])) {
+    $nip = $data['nip'];
+    $sql_traines = mysqli_query($conn, "SELECT angkatan, semester, Asisten FROM `traines` WHERE nip='$nip'");
+    $data_angkatan = mysqli_fetch_array($sql_traines);
+    $angkatan = $data_angkatan['angkatan'];
+    $asisten_ = $data_angkatan['Asisten'];
+    $sqli_jadwal = mysqli_query($conn, "SELECT MAX(week) as week FROM `schedule`");
+    $array_jadwal_ALL = mysqli_fetch_array($sqli_jadwal);
+    $ambil_idpermai = mysqli_query($conn, "SELECT MAX(id_permai) as id_permai FROM `tb_tanah_permai`");
+    $data_id = mysqli_fetch_array($ambil_idpermai);
+    $id_permai = $data_id['id_permai']+1;
+    $week = $array_jadwal_ALL['week'];
+    $ayat = $_POST['ayat'];
+    $Da = $_POST['DA'];
+    $Dt = $_POST['DT'];
+    $Ds = $_POST['DS'];
+    $pengalaman = $_POST['pengalaman'];
+    $input_tanah_permai = mysqli_query($conn, "INSERT INTO `tb_tanah_permai`(`nip`, `angkatan`, `Ayat`, `Da`, `Dt`, `Ds`, `Pengalaman_`,`Week`,`asisten`,`id_permai`) VALUES ('$nip','$angkatan','$ayat','$Da','$Dt','$Ds','$pengalaman','$week','$asisten_','$id_permai')");
+  }
 ?>
 <!DOCTYPE HTML>
 <html lang="en">
@@ -9,7 +28,7 @@ include 'session.php';
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
-<title>Azures BootStrap</title>
+<title>Jurnal Perluasan</title>
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/style.css">
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900|Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap" rel="stylesheet">
@@ -26,26 +45,22 @@ include 'session.php';
     
     <!-- header and footer bar go here-->
     <div class="header header-fixed header-auto-show header-logo-app">
-        <a href="index.html" class="header-title">AZURES</a>
-        <a href="#" data-menu="menu-main" class="header-icon header-icon-1"><i class="fas fa-bars"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-dark"><i class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
-        <a href="#" data-menu="menu-highlights" class="header-icon header-icon-3"><i class="fas fa-brush"></i></a>
+        <a href="index.php" class="header-title"><?= $data['name']?></a>
+        <a href="index.php" data-menu="menu-main" class="header-icon header-icon-1"><i class="fas fa-bars"></i></a>
+        
     </div>
     <div id="footer-bar" class="footer-bar-5">
+        <a href="jurnal.php"><i data-feather="book" data-feather-line="1" data-feather-size="21" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-light"></i><span>Jurnal</span></a>
         <a href="index-components.html"><i data-feather="heart" data-feather-line="1" data-feather-size="21" data-feather-color="red2-dark" data-feather-bg="red2-fade-light"></i><span>Features</span></a>
-        <a href="index-media.html"><i data-feather="image" data-feather-line="1" data-feather-size="21" data-feather-color="green1-dark" data-feather-bg="green1-fade-light"></i><span>Media</span></a>
-        <a href="index.html" class="active-nav"><i data-feather="home" data-feather-line="1" data-feather-size="21" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-light"></i><span>Home</span></a>
-        <a href="../logout.php" class="active-nav"><i data-feather="file" data-feather-line="1" data-feather-size="21" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-light"></i><span>Logout</span></a>
-        <a href="index-pages.html"><i data-feather="file" data-feather-line="1" data-feather-size="21" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-light"></i><span>Pages</span></a>
-        <a href="index-settings.html"><i data-feather="settings" data-feather-line="1" data-feather-size="21" data-feather-color="gray2-dark" data-feather-bg="gray2-fade-light"></i><span>Settings</span></a>
-    </div>
+        <!-- <a href="index-media.html"><i data-feather="image" data-feather-line="1" data-feather-size="21" data-feather-color="green1-dark" data-feather-bg="green1-fade-light"></i><span>Media</span></a> -->
+        <a href="index.php" class="active-nav"><i data-feather="home" data-feather-line="1" data-feather-size="21" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-light"></i><span>Home</span></a>
+          </div>
     
     <div class="page-content">
         
         <div class="page-title page-title-large">
-            <h2 data-username="Enabled!" class="greeting-text"></h2>
-            <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="images/avatars/5s.png"></a>
+            <h2 data-username="<?= $data['name']?>" class="greeting-text"></h2>
+            <!-- <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="images/avatars/5s.png"></a> -->
         </div>
         <div class="card header-card shape-rounded" data-card-height="210">
             <div class="card-overlay bg-highlight opacity-95"></div>
@@ -54,13 +69,13 @@ include 'session.php';
         </div>
         
 
-        <!-- Homepage Slider-->
-        <div class="single-slider-boxed text-center owl-no-dots owl-carousel">
+    <!-- Homepage Slider-->
+    <div class="single-slider-boxed text-center owl-no-dots owl-carousel">
             <div class="card rounded-l shadow-l" data-card-height="320">
                 <div class="card-bottom">
-                    <h1 class="font-24 font-700">Meet Azures</h1>
+                    <h1 class="font-24 font-700">Benjamin Franklin</h1>
                     <p class="boxed-text-xl">
-                        Azures brings beauty and colors to your Mobile device with a stunning user interface to match.
+                        "Jangan tunda pekerjaanmu sampai besok, sementara kau bisa mengerjakannya hari ini."
                     </p>
                 </div>
                 <div class="card-overlay bg-gradient-fade"></div>
@@ -68,9 +83,9 @@ include 'session.php';
             </div>
             <div class="card rounded-l shadow-l" data-card-height="320">
                 <div class="card-bottom">
-                    <h1 class="font-24 font-700">Beyond Powerful</h1>
+                    <h1 class="font-24 font-700">Bangkit</h1>
                     <p class="boxed-text-xl">
-                        Azures is a Mobile Web App Kit, fully featured, supporting PWA and Native Dark Mode!
+                        "Menjadi kuat bukan berarti kamu tidak pernah lelah. Itu hanya berarti kamu memiliki kekuatan untuk bangkit kembali setelah beristirahat."
                     </p>
                 </div>
                 <div class="card-overlay bg-gradient-fade"></div>
@@ -78,9 +93,9 @@ include 'session.php';
             </div>
             <div class="card rounded-l shadow-l" data-card-height="320">
                 <div class="card-bottom">
-                    <h1 class="font-24 font-700">A-Level Quality</h1>
+                    <h1 class="font-24 font-700">Don't look back with regret</h1>
                     <p class="boxed-text-xl">
-                        We build custom, premium products, that are easy to use and provide all features for you! 
+                        "Don't look back with regret, look forward with hope.”
                     </p>
                 </div>
                 <div class="card-overlay bg-gradient-fade"></div>
@@ -88,272 +103,173 @@ include 'session.php';
             </div>
         </div>
 
-        <div class="content mt-0">
-            <div class="row">
-                <div class="col-6">
-                    <a href="#" class="btn btn-full btn-m rounded-s text-uppercase font-900 shadow-xl bg-highlight">Purchase</a>
-                </div>
-                <div class="col-6">
-                    <a href="#" class="btn btn-full btn-border btn-m rounded-s text-uppercase font-900 shadow-l border-highlight color-highlight">Contact US</a>
+
+        <div class="card card-style">
+            <div class="content mb-0">
+                <div class="row justify-content-center">
+                    <div class="col-9">
+                        <h4>Total Minus</h4>
+                    </div>
+                    <div class="col-3">
+                        <p class="text-center mb-0 pb-0">
+                            <!-- <i class="fa fa-check-circle color-green1-dark fa-4x pt-3"></i> -->
+                            <h1>21</h1>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
 
         
-
         <div class="content mb-2">
-            <h5 class="float-left font-16 font-500">Quality Features</h5>
-            <a class="float-right font-12 color-highlight mt-n1" href="#">View All</a>
+            <h5 class="float-left font-16 font-500">Pribadi</h5>
+            <!-- <a class="float-right font-12 color-highlight mt-n1" href="#">View All</a> -->
             <div class="clearfix"></div>
         </div>
 
         <div class="double-slider text-center owl-carousel owl-no-dots">
             <div class="item bg-theme rounded-m shadow-m">
-                <i class="mt-4 mb-4" data-feather="shield" data-feather-line="1" data-feather-size="45" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-light"></i>
-                <h5 class="font-16">Elite Quality</h5>
+            <svg class="mt-4 mb-4" xmlns="http://www.w3.org/2000/svg" width="40" height="50" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+  <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+</svg>
+                <h5 class="font-16">BIBLE READING</h5>
                 <p class="line-height-s font-11">
-                    Built with care and <br>every detail in mind
+                   Pembacaan Alkitab <br>Wajib di isi!!
+                   <button type="button" class="btn mt-1 btn-xs bg-highlight btn-center-xs rounded-s shadow-s text-uppercase font-900" data-toggle="modal" data-target="#staticBackdrop">
+  isi
+</button>
                 </p>
             </div>
             <div class="item bg-theme rounded-m shadow-m">
-                <i class="mt-4 mb-4" data-feather="smartphone" data-feather-line="1" data-feather-size="45" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-light"></i>
-                <h5 class="font-16">PWA Ready</h5>
+                <i class="mt-4 mb-4" data-feather="book" data-feather-line="1" data-feather-size="45" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-light"></i>
+                <h5 class="font-16">GOOD LAND</h5>
                 <p class="line-height-s font-11">
-                    Just add it to your <br>Home Screen
+                    Tanah Permai <br>Wajib di isi!!
+                    <?php
+         $ambildatatanahpermai = mysqli_query($conn,"SELECT * FROM `tb_tanah_permai`  where `nip`='$id'");
+         $ambil_nip = mysqli_fetch_array($ambildatatanahpermai);
+         if ($ambil_nip['nip'] == 0) {  ?>
+<button type="button" class="btn mt-1 btn-xs bg-highlight btn-center-xs rounded-s shadow-s text-uppercase font-900" data-toggle="modal" data-target="#staticBackdrop">
+    isi
+    </button>
+       <?php  } else { ?>
+
+<a href="jurnal.php" class="btn mt-1 btn-xs btn-success btn-center-xs rounded-s shadow-s text-uppercase font-900">Lihat</a>
+    <?php   }
+        ?>
+ 
                 </p>
             </div>
             <div class="item bg-theme rounded-m shadow-m">
-                <i class="mt-4 mb-4" data-feather="sun" data-feather-line="1" data-feather-size="45" data-feather-color="yellow1-dark"  data-feather-bg="yellow1-fade-light"></i>
-                <h5 class="font-16">Eye Friendly</h5>
+                <i class="mt-4 mb-4" data-feather="book" data-feather-line="1" data-feather-size="45" data-feather-color="green1-dark"  data-feather-bg="yellow1-fade-light"></i>
+                <h5 class="font-16">Prayer</h5>
                 <p class="line-height-s font-11">
-                    Light & Dark and <br> Auto Dark Detection
+                    Buku Doa <br>Wajib di isi!!
+                    <button type="button" class="btn mt-1 btn-xs bg-highlight btn-center-xs rounded-s shadow-s text-uppercase font-900" data-toggle="modal" data-target="#staticBackdrop">
+  isi
+</button>
                 </p>
             </div>
             <div class="item bg-theme rounded-m shadow-m">
-                <i class="mt-4 mb-4" data-feather="smile" data-feather-line="1" data-feather-size="45" data-feather-color="green1-dark" data-feather-bg="green1-fade-light"></i>
-                <h5 class="font-16">Easy Code</h5>
+                <i class="mt-4 mb-4" data-feather="sun" data-feather-line="1" data-feather-size="45" data-feather-color="yellow1-dark" data-feather-bg="green1-fade-light"></i>
+                <h5 class="font-16">Morning Revival</h5>
                 <p class="line-height-s font-11">
-                    Built for you and me <br> copy and paste code.
+                    Penyegaran Pagi <br> Wajib di isi!!
+                    <a href="#" class="btn mt-1 btn-xs bg-highlight btn-center-xs rounded-s shadow-s text-uppercase font-900">View</a>
                 </p>
             </div>
         </div>
-            
+        
+        
+     
+    <!-- end of page content-->
+   <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-highlight">
+        <h5 class="modal-title text-light" id="staticBackdropLabel">Masukan Tanah Permai</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <form action="" method="post">
+        <div>
+            <label for="">Ayat :</label>
+            <textarea name="ayat" class="form-control" required id="" cols="4" rows="4"></textarea>
+        </div>
+        <div class="mt-1">
+            <label for="">Doa Apresiasi :</label>
+            <textarea name="DA" class="form-control" required id="" cols="4" rows="4"></textarea>
+        </div>
+        <div class="mt-1">
+            <label for="">Doa Terang :</label>
+            <textarea name="DT" class="form-control" required id="" cols="4" rows="4"></textarea>
+        </div>
+        <div class="mt-1">
+            <label for="">Doa Syafaat :</label>
+            <textarea name="DS" class="form-control" id="" required cols="4" rows="4"></textarea>
+        </div>
+        <div class="mt-1">
+            <label for="">Pengalaman :</label>
+            <textarea name="pengalaman" class="form-control" required id="" cols="4" rows="4"></textarea>
+        </div>
 
-        <div class="card mt-4 preload-img" data-src="images/pictures/20s.jpg">
-            <div class="card-body">
-                <h4 class="color-white">Built For You</h4>
-                <p class="color-white">
-                    Our products suit your website, running incredibly fast and provide an unmatched UX and UI.
-                </p>
-                <div class="card card-style ml-0 mr-0 bg-white">
-                    <div class="row mt-3 pt-1 mb-3">
-                        <div class="col-6">
-                            <i class="float-left ml-3 mr-3" 
-                               data-feather="globe" 
-                               data-feather-line="1" 
-                               data-feather-size="35" 
-                               data-feather-color="blue2-dark" 
-                               data-feather-bg="blue2-fade-light">
-                            </i>
-                            <h5 class="color-black float-left font-13 font-500 line-height-s pb-3 mb-3">Mobile<br>Website</h5>
-                        </div>
-                        <div class="col-6">
-                            <i class="float-left ml-3 mr-3" 
-                               data-feather="smartphone" 
-                               data-feather-line="1" 
-                               data-feather-size="35" 
-                               data-feather-color="dark2-dark" 
-                               data-feather-bg="dark2-fade-light">
-                            </i>
-                            <h5 class="color-black float-left font-13 font-500 line-height-s pb-3 mb-3">Mobile<br>PWA</h5>
-                        </div>
-                        <div class="col-6">
-                            <i class="float-left ml-3 mr-3" 
-                               data-feather="user" 
-                               data-feather-line="1" 
-                               data-feather-size="35" 
-                               data-feather-color="brown2-dark" 
-                               data-feather-bg="brown2-fade-light">
-                            </i>
-                            <h5 class="color-black float-left font-13 font-500 line-height-s">Mobile<br>Website</h5>
-                        </div>
-                        <div class="col-6">
-                            <i class="float-left ml-3 mr-3" 
-                               data-feather="box" 
-                               data-feather-line="1" 
-                               data-feather-size="35" 
-                               data-feather-color="green1-dark" 
-                               data-feather-bg="green1-fade-light">
-                            </i>
-                            <h5 class="color-black float-left font-13 font-500 line-height-s">Mobile<br>PWA</h5>
-                        </div>
-                    
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+        <button type="submit" name="submit" class="btn btn-success">Submit</button>
+    </div>
+</form>
+    </div>
+  </div>
+</div>
+
+
+
+        <div class="content mb-2">
+            <h5 class="float-left font-16 font-500">JADWAL</h5>
+            <!-- <a class="float-right font-12 color-highlight mt-n1" href="#">View All</a> -->
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="card card-style">
+            <div class="content mb-0">
+                <div class="row justify-content-center">
+                    <div class="col-9">
+                        <h4>Tidur Malam (23:00)</h4>
+                        <p class="mt-n1 line-height-m">
+                            22-2-2023
+                        </p>
+                    </div>
+                    <div class="col-3">
+                        <p class="text-center mb-0 pb-0">
+                            <i class="fa fa-check-circle color-green1-dark fa-4x pt-3"></i>
+                        </p>
                     </div>
                 </div>
             </div>
-            <div class="card-overlay bg-highlight opacity-95"></div>
-            <div class="card-overlay dark-mode-tint"></div>
         </div>
-        
         <div class="card card-style">
-            <div class="content text-center">
-                <h2>Ready in 3 Steps</h2>
-                <p class="boxed-text-xl">
-                    Our products are designed to simplify the way you code a page, with focus on easy, copy and paste.
-                </p>
-            </div>
-            <div class="divider divider-small mb-3 bg-highlight"></div>
-            
-            <div class="content">
-                <div class="d-flex mb-4 pb-3">
-                    <div>
-                        <i class="far fa-star color-yellow1-dark fa-3x pt-3 icon-size"></i>
-                    </div>
-                    <div>
-                        <h5 class="font-16 font-600">Find your Style</h5>
-                        <p>
-                            We've included multiple styles you can choose to match your exact project needs.
+            <div class="content mb-0">
+                <div class="row justify-content-center">
+                    <div class="col-9">
+                        <h4>Tidur Malam (23:00)</h4>
+                        <p class="mt-n1 line-height-m">
+                            22-2-2023
                         </p>
                     </div>
-                </div>            
-                <div class="d-flex mb-4 pb-3">
-                    <div>
-                        <i class="fa fa-mobile-alt color-blue2-dark fa-3x pt-3 icon-size"></i>
-                    </div>
-                    <div>
-                        <h5 class="font-16 font-600">Paste your Blocks</h5>
-                        <p>
-                            Just choose the blocks you like, copy and past them, add your text and that's it!
+                    <div class="col-3">
+                        <p class="text-center mb-0 pb-0">
+                            <i class="fa fa-check-circle color-green1-dark fa-4x pt-3"></i>
                         </p>
                     </div>
-                </div>            
-                <div class="d-flex mb-2">
-                    <div>
-                        <i class="far fa-check-circle color-green1-dark fa-3x pt-3 icon-size"></i>
-                    </div>
-                    <div>
-                        <h5 class="font-16 font-600">Publish your Page</h5>
-                        <p>
-                            Done with copy pasting? Your mobile site is now ready! Publish it or create an app!
-                        </p>
-                    </div>
-                </div>            
+                </div>
             </div>
         </div>
         
-        <div class="card card-style preload-img" data-src="images/pictures/20s.jpg" data-card-height="350">
-            <div class="card-center text-center">
-                <p class="line-height-xl font-19 font-300 color-white pl-3 pr-3 mb-2">
-                    This is a great product! Many components that we can use, and I really appreciate the support from Enabled. Very responsive and provides great solutions.
-                </p>
-                <p class="opacity-50 color-white">Envato Customer</p>
-                <a href="#" class="btn btn-m rounded-s btn-border color-white border-white text-uppercase font-900">View Testimonials</a>
-            </div>
-            <div class="card-overlay bg-highlight opacity-95"></div>
-        </div>
-        
-        <div class="card card-style">
-            <div class="content">
-                <h5 class="float-left font-16 font-600">Happy Customers</h5>
-                <a class="float-right font-12 color-highlight mt-n1" href="#">View All</a>
-                <div class="clearfix"></div>
-                <p class="pt-2">
-                    Over 30.000 people use our products, and we're always happy to see the positiv impact our products have had! Thank you!
-                </p>
-            </div>
-            <div class="user-list-slider owl-carousel mt-3 mb-n1">
-                <div class="icon-user">
-                    <img data-src="images/avatars/1s.png" width="55" height="55" class="rounded-xl owl-lazy shadow-l bg-gradient-blue2">
-                    <p>Jane</p>
-                </div>     
-                <div class="icon-user">
-                    <img data-src="images/avatars/2s.png" width="55" height="55" class="rounded-xl owl-lazy shadow-l bg-gradient-red2">
-                    <p>Craig</p>
-                </div>  
-                <div class="icon-user">
-                    <img data-src="images/avatars/1s.png" width="55" height="55" class="rounded-xl owl-lazy shadow-l bg-gradient-green1">
-                    <p>Jane</p>
-                </div>     
-                <div class="icon-user">
-                    <img data-src="images/avatars/2s.png" width="55" height="55" class="rounded-xl owl-lazy shadow-l bg-gradient-brown1">
-                    <p>Craig</p>
-                </div>  
-            </div>
-        </div>
-        
-        <div class="content mb-3">
-            <h5 class="float-left font-16 font-500">Products we Love</h5>
-                <a class="float-right font-12 color-highlight mt-n1" href="#">View All</a>
-            <div class="clearfix"></div>
-        </div>
-        
-        <div class="double-slider owl-carousel owl-no-dots text-center">
-            <div class="item bg-theme pb-3 rounded-m shadow-l">
-                <div data-card-height="200" class="card mb-2 bg-29">
-                    <h5 class="card-bottom color-white mb-2">Sticky Mobile</h5>
-                    <div class="card-overlay bg-gradient opacity-70"></div>
-                </div>  
-                <p class="mb-3 pl-2 pr-2 pt-2 font-12">
-                    Classic, elegant and powerful. A best seller.
-                </p>
-                <a href="#" class="btn btn-xs bg-highlight btn-center-xs rounded-s shadow-s text-uppercase font-900">View</a>
-            </div>
-            <div class="item bg-theme pb-3 rounded-m shadow-l">
-                <div data-card-height="200" class="card mb-2 bg-18">
-                    <h5 class="card-bottom color-white mb-2">Eazy Mobile</h5>
-                    <div class="card-overlay bg-gradient opacity-70"></div>
-                </div>  
-                <p class="mb-3 pl-2 pr-2 pt-2 font-12">
-                    A best seller, elegant multi use design.
-                </p>
-                <a href="#" class="btn btn-xs bg-highlight btn-center-xs rounded-s shadow-s text-uppercase font-900">View</a>
-            </div>
-            <div class="item bg-theme pb-3 rounded-m shadow-l">
-                <div data-card-height="200" class="card mb-2 bg-11">
-                    <h5 class="card-bottom color-white mb-2">Bars Mobile</h5>
-                    <div class="card-overlay bg-gradient opacity-70"></div>
-                </div>  
-                <p class="mb-3 pl-2 pr-2 pt-2 font-12">
-                    Modern sidebars and a very intuitive interface.
-                </p>
-                <a href="#" class="btn btn-xs bg-highlight btn-center-xs rounded-s shadow-s text-uppercase font-900">View</a>
-            </div>
-        </div>
-        
-        <div class="card card-style mt-4 shadow-l" data-card-height="150">
-            <div class="card-center pl-3 pr-3">
-                <h4 class="color-white">Did you know?</h4>     
-                <p class="color-white mb-0 opacity-60">
-                    We're the top selling Mobile Author on Envato. We value the quality of products and efficiency of our support!
-                </p>
-            </div>
-            <div class="card-overlay bg-highlight opacity-90"></div>
-        </div>
-        
-        <div class="card card-style text-center">
-            <div class="content pb-2">
-                <h1>
-                    <i data-feather="gift" 
-                       data-feather-line="1" 
-                       data-feather-size="55" 
-                       data-feather-color="red2-dark" 
-                       data-feather-bg="red2-fade-dark">
-                    </i>
-                </h1>
-                <h3 class="font-700 mt-2">Purchase Today</h3>
-                <p class="font-12 mt-n1 color-highlight mb-3">Quality and Premium Features for You</p>
-                <p class="boxed-text-xl">
-                    Fast, easy to use and filled with features. Give your site the Mobile Feeling it deserves.
-                </p>
-                <a href="#" class="btn btn-center-xl btn-m text-uppercase font-900 bg-highlight rounded-sm shadow-l">Buy now - $25</a>
-            </div>
-        </div>
-        
-        <!-- footer and footer card-->
-        <div class="footer" data-menu-load="menu-footer.html"></div>  
-    </div>    
-    <!-- end of page content-->
-    
     
     <div id="menu-share" 
          class="menu menu-box-bottom menu-box-detached rounded-m" 
@@ -370,7 +286,7 @@ include 'session.php';
     </div>
     
     <div id="menu-main"
-         class="menu menu-box-right menu-box-detached rounded-m"
+         class="menu menu-box-left menu-box-detached rounded-m"
          data-menu-width="260"
          data-menu-load="menu-main.html"
          data-menu-active="nav-welcome"

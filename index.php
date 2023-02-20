@@ -51,7 +51,7 @@ if (isset($_POST['login'])) {
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900|Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="code/fonts/css/fontawesome-all.min.css">    
 <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
-<link rel="apple-touch-icon" sizes="180x180" href="code/app/icons/icon-192x192.png">
+
 </head>
     
 <body class="theme-light" data-highlight="blue2">
@@ -61,21 +61,14 @@ if (isset($_POST['login'])) {
 <div id="page">
     
     <!-- header and footer bar go here-->
-    <div class="header header-fixed header-auto-show header-logo-app">
-        <a href="#" data-back-button class="header-title header-subtitle">Back to Pages</a>
-        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-dark"><i class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
-        <a href="#" data-menu="menu-highlights" class="header-icon header-icon-3"><i class="fas fa-brush"></i></a>
-        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
-    </div>
+ 
 
     
     <div class="page-content">
         
         <div class="page-title page-title-small">
-            <h2><a href="#" data-back-button><i class="fa fa-arrow-left"></i></a>Sign In</h2>
-            <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="images/avatars/5s.png"></a>
+            <h2><a href="#" data-back-button><i class="fa fa-arrow-left"></i></a>Masuk</h2>
+
         </div>
         <div class="card header-card shape-rounded" data-card-height="150">
             <div class="card-overlay bg-highlight opacity-95"></div>
@@ -90,22 +83,20 @@ if (isset($_POST['login'])) {
                     <i class="input-icon fa fa-user color-theme"></i>
                     <span>Username</span>
                     <em>(required)</em>
-                    <input type="text" name="username" placeholder="Username">
+                    <input type="text" name="username" required placeholder="Username">
                 </div> 
 
                 <div class="input-style has-icon input-style-1 input-required pb-1">
                     <i class="input-icon fa fa-lock color-theme"></i>
                     <span>Password</span>
                     <em>(required)</em>
-                    <input type="password" name="sandi" placeholder="Password">
+                    <input type="password" name="sandi" required placeholder="Password">
                 </div> 
 
                 <!-- <a href="#" class="btn btn-m mt-2 mb-4 btn-full bg-green1-dark rounded-sm text-uppercase font-900">Login</a> -->
 
                 <button type="submit" name="login" class="btn btn-m mt-2 mb-4 btn-full bg-green1-dark rounded-sm text-uppercase font-900">Login</button>
-                <div class="divider"></div>
-
-                <div class="divider mt-4 mb-3"></div>
+               
                 </form>
 
             </div>
