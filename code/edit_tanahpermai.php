@@ -114,13 +114,7 @@ $tampilkan_tanahpemai = mysqli_fetch_array($ambildata_tanah_permai);
       
 
 
-       
-    <div id="menu-share" 
-         class="menu menu-box-bottom menu-box-detached rounded-m" 
-         data-menu-load="menu-share.html"
-         data-menu-height="420" 
-         data-menu-effect="menu-over">
-    </div>    
+     
     
     <div id="menu-highlights" 
          class="menu menu-box-bottom menu-box-detached rounded-m" 
@@ -137,21 +131,7 @@ $tampilkan_tanahpemai = mysqli_fetch_array($ambildata_tanah_permai);
          data-menu-effect="menu-over">  
     </div>
     
-    <div id="menu-cookie-bottom" class="menu menu-box-bottom menu-box-detached rounded-m" 
-         data-menu-height="230"
-         data-menu-effect="menu-over"
-         data-menu-select="page-components">
-        <!-- add data-cookie-activate above to auto-activate the menu on cookie detection -->
-        <div class="boxed-text-xl">
-            <h2 class="text-center mt-3 pt-1">We're using cookies</h2>
-            <p class="text-center mt-n2 mb-3 color-highlight">To make your experience awesome!</p>
-            <p>
-                Our page uses cookies to make your overall experience better, faster and smoother. It's awesome.
-            </p>
-            <!-- add hide-cookie to the class to delete the cookie-->
-            <a href="#" class="close-menu btn btn-sm btn-center-xl rounded-xs shadow-m bg-highlight text-uppercase font-900">Accept</a>
-        </div>
-    </div>     
+   
     
     
 </div>    
