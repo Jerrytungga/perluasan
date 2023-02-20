@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
     </div>
     <div id="footer-bar" class="footer-bar-5">
         <a href="jurnal.php"><i data-feather="book" data-feather-line="1" data-feather-size="21" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-light"></i><span>Jurnal</span></a>
-        <a href="index-components.html"><i data-feather="heart" data-feather-line="1" data-feather-size="21" data-feather-color="red2-dark" data-feather-bg="red2-fade-light"></i><span>Features</span></a>
+        <!-- <a href="index-components.html"><i data-feather="heart" data-feather-line="1" data-feather-size="21" data-feather-color="red2-dark" data-feather-bg="red2-fade-light"></i><span>Features</span></a> -->
         <!-- <a href="index-media.html"><i data-feather="image" data-feather-line="1" data-feather-size="21" data-feather-color="green1-dark" data-feather-bg="green1-fade-light"></i><span>Media</span></a> -->
         <a href="index.php" class="active-nav"><i data-feather="home" data-feather-line="1" data-feather-size="21" data-feather-color="blue2-dark" data-feather-bg="blue2-fade-light"></i><span>Home</span></a>
           </div>
@@ -113,7 +113,7 @@ if (isset($_POST['submit'])) {
                     <div class="col-3">
                         <p class="text-center mb-0 pb-0">
                             <!-- <i class="fa fa-check-circle color-green1-dark fa-4x pt-3"></i> -->
-                            <h1>21</h1>
+                            <h1 class="text-danger">21</h1>
                         </p>
                     </div>
                 </div>
@@ -238,30 +238,23 @@ if (isset($_POST['submit'])) {
         <div class="card card-style">
             <div class="content mb-0">
                 <div class="row justify-content-center">
-                    <div class="col-9">
+                    <div class="col-12">
                         <h4>Tidur Malam (23:00 PM)</h4>
+                        <Button class="btn btn-success m-2">Tidur</Button>
                        
                     </div>
-                    <div class="col-3">
-                        <p class="text-center mb-0 pb-0">
-                            <i class="fa fa-check-circle color-green1-dark fa-4x pt-3"></i>
-                        </p>
-                    </div>
+                   
                 </div>
             </div>
         </div>
         <div class="card card-style">
             <div class="content mb-0">
                 <div class="row justify-content-center">
-                    <div class="col-9">
+                    <div class="col-12">
                         <h4>Bagun Pagi (05:13 AM)</h4>
-                       
+                        <button class="btn btn-success m-2">Bangun</button>
                     </div>
-                    <div class="col-3">
-                        <p class="text-center mb-0 pb-0">
-                            <i class="fa fa-check-circle color-green1-dark fa-4x pt-3"></i>
-                        </p>
-                    </div>
+                    
                 </div>
             </div>
         </div>
