@@ -239,10 +239,8 @@ if (isset($_POST['submit'])) {
             <div class="content mb-0">
                 <div class="row justify-content-center">
                     <div class="col-9">
-                        <h4>Tidur Malam (23:00)</h4>
-                        <p class="mt-n1 line-height-m">
-                            22-2-2023
-                        </p>
+                        <h4>Tidur Malam (23:00 PM)</h4>
+                       
                     </div>
                     <div class="col-3">
                         <p class="text-center mb-0 pb-0">
@@ -256,10 +254,8 @@ if (isset($_POST['submit'])) {
             <div class="content mb-0">
                 <div class="row justify-content-center">
                     <div class="col-9">
-                        <h4>Tidur Malam (23:00)</h4>
-                        <p class="mt-n1 line-height-m">
-                            22-2-2023
-                        </p>
+                        <h4>Bagun Pagi (05:13 AM)</h4>
+                       
                     </div>
                     <div class="col-3">
                         <p class="text-center mb-0 pb-0">

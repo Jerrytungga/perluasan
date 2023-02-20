@@ -27,12 +27,12 @@ include 'session.php';
     
     <!-- header and footer bar go here-->
     <div class="header header-fixed header-auto-show header-logo-app">
-        <a href="index.php" data-back-button class="header-title header-subtitle">Back to Components</a>
+        <a href="index.php" data-back-button class="header-title header-subtitle"><?= $data['name']?></a>
         <a href="index.php" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-dark"><i class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
-        <a href="#" data-menu="menu-highlights" class="header-icon header-icon-3"><i class="fas fa-brush"></i></a>
-        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="index.php" data-toggle-theme class="header-icon header-icon-2 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="index.php" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
+        <a href="index.php" data-menu="menu-highlights" class="header-icon header-icon-3"><i class="fas fa-brush"></i></a>
+        <a href="index.php" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
     </div>
     
         <div id="footer-bar" class="footer-bar-5">
@@ -46,7 +46,7 @@ include 'session.php';
     
     <div class="page-content" style="min-height:60vh!important">
         <div class="page-title page-title-small">
-            <h2><a href="#" data-back-button><i class="fa fa-arrow-left"></i></a>JURNAL PERLUASAN</h2>
+            <h2><a href="index.php" data-back-button><i class="fa fa-arrow-left"></i></a>JURNAL PERLUASAN</h2>
             <!-- <a href="#" data-menu="menu-main" class="bg-fade-gray1-dark shadow-xl preload-img" data-src="images/avatars/5s.png"></a> -->
         </div>
         <div class="card header-card shape-rounded" data-card-height="150">

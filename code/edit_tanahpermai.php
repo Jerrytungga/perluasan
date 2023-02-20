@@ -43,12 +43,12 @@ $tampilkan_tanahpemai = mysqli_fetch_array($ambildata_tanah_permai);
     
     <!-- header and footer bar go here-->
     <div class="header header-fixed header-auto-show header-logo-app">
-        <a href="#" data-back-button class="header-title header-subtitle">Back to Components</a>
-        <a href="#" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-dark"><i class="fas fa-sun"></i></a>
-        <a href="#" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
-        <a href="#" data-menu="menu-highlights" class="header-icon header-icon-3"><i class="fas fa-brush"></i></a>
-        <a href="#" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
+        <a href="jurnal.php" data-back-button class="header-title header-subtitle"><?= $data['name']?></a>
+        <a href="jurnal.php" data-back-button class="header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
+        <a href="jurnal.php" data-toggle-theme class="header-icon header-icon-2 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+        <a href="jurnal.php" data-toggle-theme class="header-icon header-icon-2 show-on-theme-light"><i class="fas fa-moon"></i></a>
+        <a href="jurnal.php" data-menu="menu-highlights" class="header-icon header-icon-3"><i class="fas fa-brush"></i></a>
+        <a href="jurnal.php" data-menu="menu-main" class="header-icon header-icon-4"><i class="fas fa-bars"></i></a>
     </div>
     <div id="footer-bar" class="footer-bar-5">
     <a href="jurnal.php"  class="active-nav"><i data-feather="book" data-feather-line="1" data-feather-size="21" data-feather-color="brown1-dark" data-feather-bg="brown1-fade-light"></i><span>Jurnal</span></a>
@@ -76,8 +76,8 @@ $tampilkan_tanahpemai = mysqli_fetch_array($ambildata_tanah_permai);
         <div class="card card-style">
             <div class="content mb-0">        
                 <h3><?= $tampilkan_tanahpemai['date']; ?> </h3><p></p>
-                <div class="mb-2">
                 <form action="" method="POST">
+                <div class="mb-2">
                 <input type="hidden" name="id__permai" value="<?= $idpermai;?>">
                     <h6 for="">Ayat :</h6>
                     <textarea name="ayat" class="form-control" id="" cols="4" rows="4"><?= $tampilkan_tanahpemai['Ayat']; ?></textarea>
@@ -100,10 +100,10 @@ $tampilkan_tanahpemai = mysqli_fetch_array($ambildata_tanah_permai);
                     <textarea name="Pengalaman_" class="form-control" id="" cols="4" rows="4"><?= $tampilkan_tanahpemai['Pengalaman_']; ?></textarea>
                 </div>
                
-                <div class="modal-footer">
-        <a href="jurnal.php" type="button" class="btn btn-danger">Batalkan</a>
-        <button type="submit" name="ubah" class="btn btn-warning">Simpan Perubahan</button>
-      </div>
+               
+        <a href="jurnal.php" type="button" class="btn btn-danger mb-3">Batalkan</a>
+        <button type="submit" name="ubah" class="btn btn-warning mb-3">Simpan Perubahan</button>
+   
       </form>
                 
             </div>
